@@ -7,4 +7,7 @@ Task4 - ДЗ 4
 Task5_1 - ДЗ 5, вариант if
 Task5_2 - ДЗ 5, вариант if - else if - else
 Task5_3 - ДЗ 5, вариант switch
+<<<<<<< HEAD
 Task6 - ДЗ 6
+=======
+>>>>>>> 04847ce54fe5e57b7c9801821df7eed02a958e9b
