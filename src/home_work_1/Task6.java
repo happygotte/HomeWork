@@ -12,7 +12,7 @@ public class Task6 {
         int h = num[7];
         int i = num[8];
         int k = num[9];
-        return String.format("(%d%d%d) %d%d%d-%d%d%d%d", a, b, c, d, e, f, g, h, i, k);
+        return "("+a+b+c+")"+" "+d+e+f+"-"+g+h+i+k;
     }
 
     public static void main(String[] args) {
