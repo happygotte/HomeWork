@@ -1,18 +1,20 @@
 package home_work_2.arrays;
 
+import home_work_2.Utils.ArraysUtils2_1;
+
 public class ArraysIteration2_2 {
     public static void main(String[] args) {
         int[] container = ArraysUtils2_1.arrayFromConsole();
-        AllElem(container);
-        OddElem(container);
-        Reverse(container);
+        allElem(container);
+        oddElem(container);
+        reverse(container);
     }
 
     /**
      * Вывод в консоль всех элементов массива
      * @param container массив чисел
      */
-    public static void AllElem(int[] container) {
+    public static void allElem(int[] container) {
         int i = 0;
         do {
             System.out.print((i + 1) + " элемент" + " = " + container[i] + "; ");
@@ -44,7 +46,7 @@ public class ArraysIteration2_2 {
      * Вывод в консоль каждого второго элемента массива
      * @param container массив чисел
      */
-    public static void OddElem(int[] container) {
+    public static void oddElem(int[] container) {
 
         if (container.length > 1) {
             int i = 1;
@@ -94,7 +96,7 @@ public class ArraysIteration2_2 {
      * Вывод на консоль элементов массива в обратном порядке
      * @param container массив чисел
      */
-    public static void Reverse(int[] container) {
+    public static void reverse(int[] container) {
         int i = container.length-1;
         do {
             System.out.print((i + 1) + " элемент" + " = " + container[i] + "; ");

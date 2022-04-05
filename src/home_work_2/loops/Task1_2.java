@@ -15,7 +15,7 @@ public class Task1_2 {
             if (Character.isDigit(array[i])) { // подсчёт числовых значений
                 digit += 1;
             }
-            if (array[i] == '.' | array[i] == ',') { // является ли символ точкой
+            if (array[i] == '.' || array[i] == ',') { // является ли символ точкой
                 pointCount += 1;
             }
         }
@@ -26,25 +26,22 @@ public class Task1_2 {
             for (int i = 0; i < array.length; i++) { // преобразование массива символов в массив чисел
                 arrayDigit[i] = Character.getNumericValue(array[i]);
             }
+
             int result = 1;
             String s = "";
             for (int i = 1; i < arrayDigit.length; i++) { // перемножение чисел
-                result = result * arrayDigit[i];
-                if (result <= 0) {  // проверка на переполнение с прерыванием цикла
+                result *= arrayDigit[i];
+                if (result % arrayDigit[i] != 0 || result == 0) {  // проверка на переполнение с прерыванием цикла
                     System.out.println("Произошло переполнение");
-                    break;
+                    return;
+                }
+                if (i < arrayDigit.length-1) {  // если число не последнее, добавить *
+                    s += i + " * ";
                 } else {
-                    if (i < arrayDigit.length-1) {  // если число не последнее, добавить *
-                        s += i + " * ";
-                    } else {
-                        s += i;
-                    }
+                    s += i;
                 }
             }
-            if (result > 0) {  // в случае без переполнения вывести результат
-                System.out.println(s + " = " + result);
-            }
-
+            System.out.println(s + " = " + result);
 
         } else {
             if (pointCount == 1) { // нет проверки на точку/запятую в начале

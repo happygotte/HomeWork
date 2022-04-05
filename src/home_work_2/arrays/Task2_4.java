@@ -1,4 +1,6 @@
 package home_work_2.arrays;
+import home_work_2.Utils.ArraysUtils2_1;
+
 import java.util.Arrays;
 
 
@@ -6,12 +8,12 @@ public class Task2_4 {
     public static void main(String[] args) {
         int[] container = ArraysUtils2_1.arrayRandom(50, 100);
 
-        System.out.println(SumEven(container));
-        System.out.println(MaxEven(container));
-        Lesser(container);
-        System.out.println(Arrays.toString(TwoLesser(container)));
-        System.out.println(Arrays.toString(CompressAndFillZeros(container, 60, 80)));
-        System.out.println(SumDigits(container));
+        System.out.println(sumEven(container));
+        System.out.println(maxEven(container));
+        lesser(container);
+        System.out.println(Arrays.toString(twoLesser(container)));
+        System.out.println(Arrays.toString(compressAndFillZeros(container, 60, 80)));
+        System.out.println(sumDigits(container));
 
     }
 
@@ -20,7 +22,7 @@ public class Task2_4 {
      * @param container массив чисел
      * @return сумма чисел согласно условию
      */
-    public static int SumEven(int[] container) {
+    public static int sumEven(int[] container) {
         int result = 0;
         for (int i = 0; i < container.length; i++) {
             if (container[i] % 2 == 0) {
@@ -35,7 +37,7 @@ public class Task2_4 {
      * @param container массив чисел
      * @return максимальный элемент
      */
-    public static int MaxEven(int[] container) {
+    public static int maxEven(int[] container) {
         int max = container[0];
         for (int i = 0; i < container.length; i += 2) {
             if (container[i] > max) {
@@ -49,7 +51,7 @@ public class Task2_4 {
      * Вывод элементов массива, которые меньше среднего арифметического
      * @param container массив чисел
      */
-    public static void Lesser(int[] container) {
+    public static void lesser(int[] container) {
         int result = 0;
         for (int i = 0; i < container.length; i++) {
             result += container[i];
@@ -69,7 +71,7 @@ public class Task2_4 {
      * @param container массив чисел
      * @return массив из двух наименьших элементов
      */
-    public static int[] TwoLesser(int[] container) {
+    public static int[] twoLesser(int[] container) {
         int lesser_num1 = container[0];
         int lesser_num2 = container[0];
         for (int i = 0; i < container.length; i++) {
@@ -91,7 +93,7 @@ public class Task2_4 {
      * @param upper верхняя граница интервала
      * @return "сжатый" массив
      */
-    public static int[] CompressAndFillZeros(int[] container, int lower, int upper) {
+    public static int[] compressAndFillZeros(int[] container, int lower, int upper) {
         int[] new_container = new int[container.length];
         for (int i = 0; i < new_container.length; i++) {
             new_container[i] = 0;
@@ -112,7 +114,7 @@ public class Task2_4 {
      * @param container массив чисел
      * @return сумма цифр массива
      */
-    public static int SumDigits(int[] container) {
+    public static int sumDigits(int[] container) {
         int result = 0;
         for (int i = 0; i < container.length; i++) {
             int num = container[i];
