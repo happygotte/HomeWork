@@ -26,6 +26,12 @@ public class StudentOperations {
         return students;
     }
 
+    /**
+     * Создание строки с рандомными кириллическими буквами
+     * @param a нижняя граница длины строки
+     * @param b верхняя граница длины строки
+     * @return строка
+     */
     public String name(int a, int b) {
         Random rnd = new Random();
         ;
