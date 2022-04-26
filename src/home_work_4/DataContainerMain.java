@@ -3,6 +3,8 @@ package home_work_4;
 import home_work_4.comparators.ComparatorInteger;
 import java.util.Arrays;
 
+import static home_work_4.DataContainer.sort;
+
 
 public class DataContainerMain<T> {
     public static void main(String[] args) {
@@ -44,6 +46,25 @@ public class DataContainerMain<T> {
 
         container1.add(null); // Попытка добавить значение null
         System.out.println(container1); // Без изменений
+
+        // Вызов дженерик-метода sort (11*)
+        DataContainer<String> container2 = new DataContainer<>(new String[]{"believe", "win", "can"});
+        System.out.println("Container2 before: " + container2);
+        sort(container2); // Сортировка
+        System.out.println("Container2 after: " + container2); // ["believe", "can", "win"]
+
+        // Проверка на null в массиве
+        DataContainer<String> containerWithNull = new DataContainer<>(new String[]{"believe", null, "can"});
+        sort(containerWithNull); // Сортировка
+        // В консоль будет выведено "Illegal value in object"
+
+        // Вызов дженерик-метода sort с компаратором (12*)
+        DataContainer<Integer> container3 = new DataContainer<>(new Integer[]{5, 3, 1, 999});
+        System.out.println("Container3 before: " + container3);
+        sort(container3, new ComparatorInteger()); // Сортировка
+        System.out.println("Container3 after: " + container3); // [1, 3, 5, 999]
+
+
 
 
 

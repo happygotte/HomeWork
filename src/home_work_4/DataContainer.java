@@ -121,20 +121,60 @@ public class DataContainer<T> {
      */
     public void sort(Comparator<T> comparator) {
         for (int i = 0; i < this.data.length-1; i++) {
-            boolean flag = false;
             for (int j = i+1; j < this.data.length; j++) {
                 if (comparator.compare(this.data[i], this.data[j]) > 0) {
                     T temp = this.data[i];
                     this.data[i] = this.data[j];
                     this.data[j] = temp;
-                    flag = true;
                 }
-            }
-            if (!flag) {
-                break;
             }
         }
     }
+
+    /**
+     * Сортировка переданного массива с помощью метода compareTo
+     * @param container массив, который необходимо сортировать
+     * @param <T> переменная типа, ограниченная Comparable
+     */
+    public static <T extends Comparable<T>> void sort(DataContainer <T> container){
+        for (int i = 0; i < container.data.length-1; i++) {
+            for (int j = i+1; j < container.data.length; j++) {
+                if (container.data[i] == null || container.data[j] == null) {
+                    System.out.println("Illegal value in object");
+                    return;
+                }
+                if (container.data[i].compareTo(container.data[j]) > 0) {
+                    T temp = container.data[i];
+                    container.data[i] = container.data[j];
+                    container.data[j] = temp;
+                }
+            }
+        }
+    }
+
+    /**
+     * Сортировка переданного массива с помощью передаваемого компаратора
+     * @param container массив, который необходимо сортировать
+     * @param comparator передаваемый компаратор
+     * @param <T> переменная типа
+     */
+    public static <T> void sort(DataContainer<T> container, Comparator<T> comparator) {
+        for (int i = 0; i < container.data.length-1; i++) {
+            for (int j = i+1; j < container.data.length; j++) {
+                if (container.data[i] == null || container.data[j] == null) {
+                    System.out.println("Illegal value in object");
+                    return;
+                }
+                if (comparator.compare(container.data[i], container.data[j]) > 0) {
+                    T temp = container.data[i];
+                    container.data[i] = container.data[j];
+                    container.data[j] = temp;
+                }
+            }
+        }
+
+    }
+
 
     @Override
     public String toString() {
