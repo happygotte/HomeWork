@@ -34,7 +34,6 @@ public class StudentOperations {
      */
     public String name(int a, int b) {
         Random rnd = new Random();
-        ;
         int length = a + rnd.nextInt(b - a);
         char[] chars = new char[length];
         for (int i = 0; i < length; i++) {
@@ -101,7 +100,7 @@ public class StudentOperations {
         for (Student student : students) {
             System.out.println(student);
             count++;
-            if (count > num) {
+            if (count == num) {
                 break;
             }
         }
