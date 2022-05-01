@@ -8,44 +8,54 @@ public class DoWhileOperation implements IArraysOperation {
         int[] container = ArraysUtils2_1.arrayFromConsole();
 
         DoWhileOperation d_w1 = new DoWhileOperation();
+
         d_w1.allElem(container);
-
-        DoWhileOperation d_w2 = new DoWhileOperation();
-        d_w2.oddElem(container);
-
-        DoWhileOperation d_w3 = new DoWhileOperation();
-        d_w3.reverse(container);
-
+        d_w1.oddElem(container);
+        d_w1.reverse(container);
     }
 
-    public void allElem(int[] container) {
+    public String allElem(int[] container) {
+        StringBuilder str = new StringBuilder();
         int i = 0;
         do {
-            System.out.print((i + 1) + " элемент" + " = " + container[i] + "; ");
+            str.append(i + 1);
+            str.append(" элемент = ");
+            str.append(container[i]);
+            str.append("; ");
             i++;
         } while (i < container.length);
-        System.out.print("\n");
+        return "" + str;
     }
 
-    public void oddElem(int[] container) {
+    public String oddElem(int[] container) {
+        StringBuilder str = new StringBuilder();
         if (container.length > 1) {
             int i = 1;
             do {
                 if (i % 2 == 1) {
-                    System.out.print((i + 1) + " элемент" + " = " + container[i] + "; ");
+                    str.append(i + 1);
+                    str.append(" элемент = ");
+                    str.append(container[i]);
+                    str.append("; ");
                 }
                 i++;
             } while (i < container.length);
-            System.out.print("\n");
+        } else {
+            return "Недостаточно элементов в массиве";
         }
+        return "" + str;
     }
 
-    public void reverse (int[] container) {
+    public String reverse (int[] container) {
+        StringBuilder str = new StringBuilder();
         int i = container.length - 1;
         do {
-            System.out.print((i + 1) + " элемент" + " = " + container[i] + "; ");
+            str.append(i + 1);
+            str.append(" элемент = ");
+            str.append(container[i]);
+            str.append("; ");
             i--;
         } while (i > -1);
-        System.out.print("\n");
+        return "" + str;
     }
 }

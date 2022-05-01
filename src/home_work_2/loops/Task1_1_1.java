@@ -1,22 +1,10 @@
 package home_work_2.loops;
 
 public class Task1_1_1 {
-    public static void main(String[] args) {
-        String arg = args[0];
+    String string;
 
-        if (isLetter(arg)) {
-            System.out.println("Введено не число");
-            return;
-        }
-
-        int num = Integer.parseInt(args[0]);
-
-        if (num > 16) { // Проверка на переполнение
-            System.out.println("Введено слишком большое число");
-            return;
-        }
-
-        System.out.println(factorial(num));
+    public Task1_1_1(String string) { // TODO нужен ли мне здесь конструктор?
+        this.string = string;
     }
 
     /**
@@ -34,23 +22,32 @@ public class Task1_1_1 {
         return false;
     }
 
+
     /**
      * Вычисление факториала числа
-     * @param number целое положительное число
+     * @param string строка с числом
      * @return строка, отображающая процесс вычисления факториала с результатом
      */
-    public static String factorial(int number) {
-        int result = 1;
-        String s = "";
-        for (int i = 1; i <= number; i++) {
-            result *= i;
-            if (i < number) {  // если число не последнее, добавить *
-                s += i + " * ";
-            } else {
-                s += i;
+    public static String factorial(String string) {
+        if (!isLetter(string)) {
+            int num = Integer.parseInt(string);
+            if (num > 16) {
+                return "Введено слишком большое число";
             }
+            int result = 1;
+            StringBuilder s = new StringBuilder();
+            for (int i = 1; i <= num; i++) {
+                result *= i;
+                if (i < num) {  // если число не последнее, добавить *
+                    s.append(i);
+                    s.append(" * ");
+                } else {
+                    s.append(i);
+                }
+            }
+            return s + " = " + result;
         }
-        return s + " = " + result;
+        return "Введены недопустимые данные";
     }
 }
 

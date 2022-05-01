@@ -7,42 +7,48 @@ public class ForOperation implements IArraysOperation {
     public static void main(String[] args) {
         int[] container = ArraysUtils2_1.arrayFromConsole();
 
-        ForOperation for1 = new ForOperation();
-        for1.allElem(container);
-
-        ForOperation for2 = new ForOperation();
-        for2.oddElem(container);
-
-        ForOperation for3 = new ForOperation();
-        for3.reverse(container);
+        ForOperation fori = new ForOperation();
+        fori.allElem(container);
+        fori.oddElem(container);
+        fori.reverse(container);
     }
 
-    public void allElem(int[] container) {
-        for (int k = 0; k < container.length; k++) {
-            System.out.print((k + 1) + " элемент" + " = " + container[k] + "; ");
+    public String allElem(int[] container) {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < container.length; i++) {
+            str.append(i + 1);
+            str.append(" элемент = ");
+            str.append(container[i]);
+            str.append("; ");
         }
-        System.out.print("\n");
+        return "" + str;
     }
 
-    public void oddElem(int[] container) {
-
+    public String oddElem(int[] container) {
+        StringBuilder str = new StringBuilder();
         if (container.length > 1) {
-            for (int k = 0; k < container.length; k++) {
-                if (k % 2 == 1) {
-                    System.out.print((k + 1) + " элемент" + " = " + container[k] + "; ");
+            for (int i = 0; i < container.length; i++) {
+                if (i % 2 == 1) {
+                    str.append(i + 1);
+                    str.append(" элемент = ");
+                    str.append(container[i]);
+                    str.append("; ");
                 }
             }
-            System.out.print("\n");
         } else {
-            System.out.print("Недостаточно элементов в массиве");
-            System.out.println("\n");
+            return "Недостаточно элементов в массиве";
         }
+        return "" + str;
     }
 
-    public void reverse(int[] container) {
-        for (int k = container.length-1; k > -1; k--) {
-            System.out.print((k + 1) + " элемент" + " = " + container[k] + "; ");
+    public String reverse(int[] container) {
+        StringBuilder str = new StringBuilder();
+        for (int i = container.length-1; i > -1; i--) {
+            str.append(i + 1);
+            str.append(" элемент = ");
+            str.append(container[i]);
+            str.append("; ");
         }
-        System.out.print("\n");
+        return "" + str;
     }
 }

@@ -9,46 +9,52 @@ public class WhileOperation implements IArraysOperation {
 
         WhileOperation w1 = new WhileOperation();
         w1.allElem(container);
-
-        WhileOperation w2 = new WhileOperation();
-        w2.oddElem(container);
-
-        WhileOperation w3 = new WhileOperation();
-        w3.reverse(container);
+        w1.oddElem(container);
+        w1.reverse(container);
     }
 
-    public void allElem(int[] container) {
-        int j = 0;
-        while (j < container.length) {
-            System.out.print((j + 1) + " элемент" + " = " + container[j] + "; ");
-            j++;
+    public String allElem(int[] container) {
+        StringBuilder str = new StringBuilder();
+        int i = 0;
+        while (i < container.length) {
+            str.append(i + 1);
+            str.append(" элемент = ");
+            str.append(container[i]);
+            str.append("; ");
+            i++;
         }
-        System.out.print("\n");
+        return "" + str;
     }
 
-    public void oddElem(int[] container) {
-
+    public String oddElem(int[] container) {
+        StringBuilder str = new StringBuilder();
         if (container.length > 1) {
-            int j = 1;
-            while (j < container.length) {
-                if (j % 2 == 1) {
-                    System.out.print((j + 1) + " элемент" + " = " + container[j] + "; ");
+            int i = 1;
+            while (i < container.length) {
+                if (i % 2 == 1) {
+                    str.append(i + 1);
+                    str.append(" элемент = ");
+                    str.append(container[i]);
+                    str.append("; ");
                 }
-                j++;
+                i++;
             }
-            System.out.print("\n");
         } else {
-            System.out.print("Недостаточно элементов в массиве");
-            System.out.println("\n");
+            return "Недостаточно элементов в массиве";
         }
+        return "" + str;
     }
 
-    public void reverse(int[] container) {
-        int j = container.length-1;
-        while (j > -1) {
-            System.out.print((j + 1) + " элемент" + " = " + container[j] + "; ");
-            j--;
+    public String reverse(int[] container) {
+        StringBuilder str = new StringBuilder();
+        int i = container.length-1;
+        while (i > -1) {
+            str.append(i + 1);
+            str.append(" элемент = ");
+            str.append(container[i]);
+            str.append("; ");
+            i--;
         }
-        System.out.print("\n");
+        return "" + str;
     }
 }

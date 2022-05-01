@@ -1,22 +1,26 @@
 package home_work_1;
 
-import java.util.Scanner;
+import java.util.Objects;
 
-public class Task5_1 {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введите своё имя");
-        String name = in.nextLine();
+public class Task5_1 implements ICommunicationPrinter {
 
-        if (name.equals("Вася") | name.equals("Анастасия")) {
-            if (name.equals("Вася")) {
-                System.out.println("Привет!");
-            }
-            System.out.println("Я тебя так долго ждал");
+    @Override
+    public String welcome(String name) {
+        boolean isFriend = Objects.equals(name, "Вася");
+        boolean isGirl = Objects.equals(name, "Анастасия");
+
+        if(isFriend){
+            return "Привет. \nЯ тебя так долго ждал.";
         }
 
-        if (!name.equals("Анастасия") & !name.equals("Вася")) {
-            System.out.println("Добрый день, а вы кто?");
+        if(isGirl){
+            return "Я тебя так долго ждал.";
         }
+
+        return "Добрый день, а вы кто?";
     }
 }
+
+
+
+

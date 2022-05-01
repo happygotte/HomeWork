@@ -9,48 +9,49 @@ public class ForEachOperation implements IArraysOperation {
 
         ForEachOperation foreach1 = new ForEachOperation();
         foreach1.allElem(container);
-
-        ForEachOperation foreach2 = new ForEachOperation();
-        foreach2.oddElem(container);
-
-        ForEachOperation foreach3 = new ForEachOperation();
-        foreach3.reverse(container);
+        foreach1.oddElem(container);
+        foreach1.reverse(container);
     }
 
-    public void allElem(int[] container) {
-        int x = 1;
-        for (int l : container) {
-            System.out.print(x + " элемент" + " = " + l + "; ");
-            x++;
+    public String allElem(int[] container) {
+        StringBuilder str = new StringBuilder();
+        int i = 1;
+        for (int num : container) {
+            str.append(i);
+            str.append(" элемент = ");
+            str.append(num);
+            str.append("; ");
+            i++;
         }
-        System.out.println("\n");
+        return "" + str;
     }
 
-    public void oddElem(int[] container) {
-
+    public String oddElem(int[] container) {
+        StringBuilder str = new StringBuilder();
         if (container.length > 1) {
-            int x = 1;
-            for (int l : container) {
-                if (x % 2 == 0) {
-                    System.out.print(x + " элемент" + " = " + l + "; ");
+            int i = 1;
+            for (int num : container) {
+                if (i % 2 == 0) {
+                    str.append(i);
+                    str.append(" элемент = ");
+                    str.append(num);
+                    str.append("; ");
                 }
-                x++;
+                i++;
             }
-            System.out.println("\n");
         } else {
-            System.out.print("Недостаточно элементов в массиве");
-            System.out.println("\n");
+            return "Недостаточно элементов в массиве";
         }
+        return "" + str;
     }
 
-    public void reverse(int[] container) {
-        int x = 1;
+    public String reverse(int[] container) {
+        int i = 1;
         String result = "";
-        for (int l : container) {
-            result = x + " элемент" + " = " + l + "; " + result;
-            x++;
+        for (int num : container) {
+            result = i + " элемент" + " = " + num + "; " + result;
+            i++;
         }
-        System.out.print(result);
-        System.out.println("\n");
+        return result;
     }
 }

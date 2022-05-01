@@ -7,7 +7,7 @@ public interface IArraysOperation {
      *
      * @param container массив чисел
      */
-    void allElem(int[] container);
+    String allElem(int[] container);
 
 
     /**
@@ -15,7 +15,7 @@ public interface IArraysOperation {
      *
      * @param container массив чисел
      */
-    void oddElem(int[] container);
+    String oddElem(int[] container);
 
 
     /**
@@ -23,5 +23,5 @@ public interface IArraysOperation {
      *
      * @param container массив чисел
      */
-    void reverse(int[] container);
+    String reverse(int[] container);
 }

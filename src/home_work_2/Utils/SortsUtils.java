@@ -1,5 +1,7 @@
 package home_work_2.Utils;
 
+import java.util.Arrays;
+
 public class SortsUtils {
     public static void main(String[] args) {
         int[] array = ArraysUtils2_1.arrayRandom(10, 100);

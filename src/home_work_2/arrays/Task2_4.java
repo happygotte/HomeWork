@@ -6,11 +6,13 @@ import java.util.Arrays;
 
 public class Task2_4 {
     public static void main(String[] args) {
-        int[] container = ArraysUtils2_1.arrayRandom(50, 100);
+        int[] container = ArraysUtils2_1.arrayRandom(25, 100);
+
+        //System.out.println(Arrays.toString(container));
 
         System.out.println(sumEven(container));
         System.out.println(maxEven(container));
-        lesser(container);
+        System.out.println(lesser(container));
         System.out.println(Arrays.toString(twoLesser(container)));
         System.out.println(Arrays.toString(compressAndFillZeros(container, 60, 80)));
         System.out.println(sumDigits(container));
@@ -24,9 +26,9 @@ public class Task2_4 {
      */
     public static int sumEven(int[] container) {
         int result = 0;
-        for (int i = 0; i < container.length; i++) {
-            if (container[i] % 2 == 0) {
-                result += container[i];
+        for (int j : container) {
+            if (j % 2 == 0 && j > 0) {
+                result += j;
             }
         }
         return result;
@@ -51,19 +53,21 @@ public class Task2_4 {
      * Вывод элементов массива, которые меньше среднего арифметического
      * @param container массив чисел
      */
-    public static void lesser(int[] container) {
+    public static String lesser(int[] container) {
         int result = 0;
-        for (int i = 0; i < container.length; i++) {
-            result += container[i];
+        for (int j : container) {
+            result += j;
         }
         int average = result / container.length;
 
-        for (int i = 0; i < container.length; i++) {
-            if (container[i] < average) {
-                System.out.print(container[i] + "; ");
+        StringBuilder str = new StringBuilder();
+        for (int j : container) {
+            if (j < average) {
+                str.append(j);
+                str.append("; ");
             }
         }
-        System.out.println("\n");
+        return "" + str;
     }
 
     /**
@@ -72,12 +76,26 @@ public class Task2_4 {
      * @return массив из двух наименьших элементов
      */
     public static int[] twoLesser(int[] container) {
+        if (container.length < 2) {
+            return container;
+        }
         int lesser_num1 = container[0];
-        int lesser_num2 = container[0];
-        for (int i = 0; i < container.length; i++) {
-            if (container[i] < lesser_num1) {
+        int lesser_num2 = container[1];
+
+        if (container[1] < container[0]) {
+            lesser_num2 = container[0];
+            lesser_num1 = container[1];
+        }
+
+        for (int i = 2; i < container.length; i++) {
+            if(container[i] < lesser_num1){
                 lesser_num2 = lesser_num1;
                 lesser_num1 = container[i];
+            }
+            else {
+                if(container[i] < lesser_num2){
+                    lesser_num2 = container[i];
+                }
             }
         }
         int[] two_lesser = new int[2];
@@ -87,7 +105,7 @@ public class Task2_4 {
     }
 
     /**
-     * "Сжатие" массива, удалив элементы, принадлежащие указанному интервалу
+     * "Сжатие" массива через удаление элементов, принадлежащих указанному интервалу, и заполнение пустот нулями
      * @param container массив чисел
      * @param lower нижняя граница интервала
      * @param upper верхняя граница интервала
@@ -95,12 +113,9 @@ public class Task2_4 {
      */
     public static int[] compressAndFillZeros(int[] container, int lower, int upper) {
         int[] new_container = new int[container.length];
-        for (int i = 0; i < new_container.length; i++) {
-            new_container[i] = 0;
-        }
         int count = 0;
         for (int i = 0; i < container.length; i++) {
-            if (container[i] >= lower & container[i] <= upper) {
+            if (container[i] >= lower && container[i] <= upper) {
                 count += 1;
                 continue;
             }
@@ -116,8 +131,8 @@ public class Task2_4 {
      */
     public static int sumDigits(int[] container) {
         int result = 0;
-        for (int i = 0; i < container.length; i++) {
-            int num = container[i];
+        for (int j : container) {
+            int num = Math.abs(j);
             while (num != 0) {
                 result += num % 10;
                 num /= 10;
