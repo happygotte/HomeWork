@@ -8,12 +8,7 @@ public class ComparatorGrade implements Comparator<Student> {
 
     @Override
     public int compare(Student o1, Student o2) {
-        if(o2.getGrade()> o1.getGrade()) {
-            return 1;
-        } else if(o2.getGrade()< o1.getAge()) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return Double.compare(o1.getGrade(), o2.getGrade());
     }
+
 }

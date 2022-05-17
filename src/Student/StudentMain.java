@@ -1,62 +1,139 @@
 package Student;
 
+import Student.comparator.ComparatorAge;
 import Student.comparator.ComparatorGrade;
 import Student.comparator.ComparatorName;
+import Student.predicate.StudentAgeGreatAndEqual;
+import Student.predicate.StudentGradeGreat;
+import Student.supplier.*;
+import home_work_4.comparators.ComparatorComparable;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class StudentMain {
     public static void main(String[] args) {
-        StudentOperations studentOperations = new StudentOperations();
+        Supplier<Student> students = new StudentWithNameAndOrdSupplier( // выбираем любого студента из саплайеров, если там внутри требуется саплайер для имени - указываем в качестве параметра
+                new NameFromArraySupplier2(3, 10)
+        );
 
-        /**
-         * Сгенерированный список объектов
-         */
-        List<Student> students = studentOperations.generate(10000, 7, 17, 0.0, 10.0);
+        Predicate<Student> filter = new StudentAgeGreatAndEqual(12)
+                .and(new StudentGradeGreat(8));
 
-        /**
-         * Фильтр изначального списка сначала по возрасту, затем по оценке
-         */
-        List<Student> filterList1 = studentOperations.filterAge(students, 12, 17);
-        List<Student> filterList2 = studentOperations.filterGrade(filterList1, 8.0, 10.0);
+        Comparator<Student> cmp1 = new ComparatorGrade().reversed();
+        Comparator<Student> cmp2 = new ComparatorName();
+        Comparator<Student> cmp3 = new ComparatorAge();
+        Comparator<Student> cmp4 = new ComparatorComparable<>();
 
-        /**
-         * Вывод среднего возраста в отфильтрованном списке
-         */
-        System.out.println(studentOperations.averageAge(filterList2));
+        List<Student> job = job(students, filter);
 
         /**
          * Сортировка отфильтрованного списка по убыванию оценки
          */
-        filterList2.sort(new ComparatorGrade());
+        job.sort(cmp1);
         /**
          * Вывод топ-10 отсортированного по убыванию оценки списка
          */
-        studentOperations.top(filterList2, 10);
+        top(job, 10);
         System.out.println("\n");
 
         /**
          * Сортировка отфильтрованного списка по именам
          */
-        filterList2.sort(new ComparatorName());
+        job.sort(cmp2);
         /**
          * Вывод топ-10 отсортированного по именам списка
          */
-        studentOperations.top(filterList2, 10);
+        top(job, 10);
         System.out.println("\n");
 
-        /**
-         * Вывод топ-10 отсортированного по оценкам списка для каждого возраста в заданном диапазоне
-         */
-        int ageLow = 12;
-        int ageUp = 17;
 
-        for (int i = ageLow; i <= ageUp; i++) {
-            List<Student> filterList3 = studentOperations.filterAge(students, i, i);
-            filterList3.sort(new ComparatorGrade());
-            studentOperations.top(filterList3, 10);
+        /**
+         Сортировка по имени
+         Компаратор компараблов из задания DataContainer
+         */
+        job.sort(cmp4);
+
+        /**
+         * Комбинированная сортировка по возрасту и оценке
+         */
+        Comparator<Student> ageGradeComp = cmp3.thenComparing(cmp1); // комбинация двух компараторов с помощью дефолтного метода из интерфейсa Comparator
+        job.sort(ageGradeComp);
+
+        /**
+         * Вывод топ-10 по каждому возрасту
+         */
+        int i = 0;
+        int currentAge = 0;
+        for (Student item : job) {
+
+            if(currentAge != item.getAge()){
+                i = 0;
+                currentAge = item.getAge();
+            }
+
+            if(i++ >= 10){
+                continue;
+            }
+            System.out.println(item);
+        }
+
+        /**
+         * Вывод среднего возраста в отфильтрованном списке
+         */
+        int averageAge;
+        int sum = 0;
+        for (Student student : job) {
+            sum += student.age;
+        }
+        averageAge = sum / job.size();
+        System.out.println(averageAge);
+    }
+
+    public static <T> List<T> job(Supplier<T> supplier, Predicate<T> filter) {
+
+        /**
+        Генерация списка студентов
+         */
+        List<T> students = new ArrayList<>();
+
+        for (int i = 0; i < 100000; i++) {
+            students.add(supplier.get());
+        }
+
+        /**
+        Фильтр списка по возрасту и оценке
+         */
+        List<T> filtered = new ArrayList<>();
+
+        for (T item : students) {
+            if(filter.test(item)){
+                filtered.add(item);
+            }
+        }
+        return filtered;
+    }
+
+    /**
+     * Вычленение части списка объектов от начала
+     * @param students список объектов класса Student
+     * @param num необходимое количество объектов
+     */
+    public static <T> void top(List<T> students, int num) {
+        int count = 0;
+        for (T student : students) {
+            System.out.println(student);
+            count++;
+            if (count == num) {
+                break;
+            }
         }
     }
+
 }
 
 

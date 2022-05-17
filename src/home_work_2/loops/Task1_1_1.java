@@ -3,7 +3,7 @@ package home_work_2.loops;
 public class Task1_1_1 {
     String string;
 
-    public Task1_1_1(String string) { // TODO нужен ли мне здесь конструктор?
+    public Task1_1_1(String string) {
         this.string = string;
     }
 

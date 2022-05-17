@@ -1,6 +1,8 @@
 package Student;
 
-public class Student {
+import java.util.Objects;
+
+public class Student implements Comparable<Student> {
 
     int ordNumber;
     String name;
@@ -49,6 +51,24 @@ public class Student {
 
     public void setPartOlymp(boolean partOlymp) {
         isPartOlymp = partOlymp;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return this.name.compareTo(o.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ordNumber);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return ordNumber == student.ordNumber;
     }
 
     @Override

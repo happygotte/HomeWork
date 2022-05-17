@@ -56,7 +56,6 @@ public class DataContainerMain<T> {
         // Проверка на null в массиве
         DataContainer<String> containerWithNull = new DataContainer<>(new String[]{"believe", null, "can"});
         sort(containerWithNull); // Сортировка
-        // В консоль будет выведено "Illegal value in object"
 
         // Вызов дженерик-метода sort с компаратором (12*)
         DataContainer<Integer> container3 = new DataContainer<>(new Integer[]{5, 3, 1, 999});
