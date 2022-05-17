@@ -19,6 +19,7 @@ public class Task_7_Main {
         ReadAndWrite.readDirectoryAndPrintFileNames(path);
 
         while (true) {
+            StringBuilder str = new StringBuilder();
 
             //Выбор файла
             System.out.println("Введите имя файла. Для выхода введите *");
@@ -43,13 +44,18 @@ public class Task_7_Main {
 
                 //Поиск в тексте
                 ISearchEngine iSearchEngine1 = new SearchEngineCaseInsensitive(new RegExSearch());
+
                 String resultString = fileName + " - " + searchText + " - " +
                         iSearchEngine1.search(text, searchText) + "\n";
+
                 System.out.println(resultString);
 
+                str.append(resultString);
+
                 //Запись результатов поисков в отдельный файл
-                ReadAndWrite.write(resultString, "C:\\Users\\Maria\\IdeaProjects\\JD1\\result.txt");
             }
+            ReadAndWrite.write(str, "C:\\Users\\Maria\\IdeaProjects\\JD1\\result.txt");
+
         }
     }
 }

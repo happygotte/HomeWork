@@ -11,11 +11,11 @@ public class ReadAndWrite {
      * @param string Строка, которую надо записать в файл
      * @param path Путь к файлу, в который будет производиться запись
      */
-    public static void write(String string, String path) {
+    public static void write(StringBuilder string, String path) {
 
         try (FileWriter fileWriter = new FileWriter(path, false)) { // или append true
             try {
-                fileWriter.write(string);
+                fileWriter.write(String.valueOf(string));
                 fileWriter.flush();
             } catch (IOException e) {
                 System.out.println("Произошла ошибка при записи");
